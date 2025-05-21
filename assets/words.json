@@ -1,0 +1,5 @@
+[
+  { "word": "apple", "difficulty": "easy", "wordLength": 5 },
+  { "word": "computer", "difficulty": "medium", "wordLength": 8 },
+  { "word": "encyclopedia", "difficulty": "hard", "wordLength": 12 }
+]
