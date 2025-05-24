@@ -2,6 +2,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -17,10 +18,14 @@ public class WordBank {
         // Parse JSON into List<Word>
         ObjectMapper mapper = new ObjectMapper();
 
-        words = mapper.readValue(
-                new File(path),
-                new TypeReference<List<Word>>() {}
-        );
+        try {
+            words = mapper.readValue(
+                    new File(path),
+                    new TypeReference<List<Word>>() {}
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
     }
@@ -40,7 +45,7 @@ public class WordBank {
             }
         }
         if(filteredList.isEmpty()){
-            return new Word("Empty","Easy", 5);
+            return new Word("Emtpy","Easy", 5);
         }
         return filteredList.get(random.nextInt(filteredList.size()));
     }
