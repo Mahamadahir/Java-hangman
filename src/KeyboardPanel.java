@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class KeyboardPanel extends JPanel {
             for (char c : row.toCharArray()) {
                 JButton btn = new JButton(String.valueOf(c));
                 btn.setFocusable(false);
-                btn.setFont(new Font("SansSerif", Font.BOLD, 18));
+                btn.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
                 btn.setPreferredSize(new Dimension(45, 45));
                 btn.setHorizontalAlignment(SwingConstants.CENTER);
                 btn.setVerticalAlignment(SwingConstants.CENTER);
@@ -33,6 +35,18 @@ public class KeyboardPanel extends JPanel {
             }
             add(rowPanel);
         }
+
+        // Add keyboard listener to simulate button clicks
+        setFocusable(true);
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = Character.toUpperCase(e.getKeyChar());
+                if (keyButtons.containsKey(c)) {
+                    keyButtons.get(c).doClick();
+                }
+            }
+        });
     }
 
     public Map<Character, JButton> getKeyButtons() {
