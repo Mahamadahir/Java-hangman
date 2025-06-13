@@ -15,30 +15,44 @@ public class GameLogic {
     }
 
     public boolean guess(char letter) {
-        // Mark guessed letters and reduce lives if incorrect
+        boolean found = false;
+        char[] actualChars = currentWord.toCharArray();
 
-        for(int i=0;i<currentWord.getWordLength();i++){
-            if(letter==currentWord.toCharArray()[i]){
-                guessedLetters[i]=letter;
-                return true;
+        for (int i = 0; i < actualChars.length; i++) {
+            if (actualChars[i] == letter) {
+                guessedLetters[i] = letter;
+                found = true;
             }
         }
-        livesRemaining--;
-        wrongGuesses.add(letter);
-        return false;
+
+        if (!found) {
+            livesRemaining--;
+            wrongGuesses.add(letter);
+        }
+
+        return found;
     }
 
+
     public String getDisplayWord() {
-        // Return word with underscores for unguessed
-        char [] letters = new char['_'* currentWord.getWordLength()];
-        for(int i=0;i< currentWord.getWordLength();i++){
-            for(int j =0; i< currentWord.getWordLength(); j++){
-                if(currentWord.toCharArray()[i]==guessedLetters[j]){
-                    letters[i]=currentWord.toCharArray()[i];
+        char[] display = new char[currentWord.getWordLength()];
+        char[] actualChars = currentWord.toCharArray();
+
+        for (int i = 0; i < actualChars.length; i++) {
+            char current = actualChars[i];
+            boolean guessed = false;
+
+            for (char g : guessedLetters) {
+                if (current == g) {
+                    guessed = true;
+                    break;
                 }
             }
+
+            display[i] = guessed ? current : '_';
         }
-        return new String(letters);
+
+        return new String(display);
     }
 
     public boolean isGameOver() {
@@ -46,12 +60,9 @@ public class GameLogic {
     }
 
     public boolean hasWon() {
-        // Return true if all letters guessed
-        if(currentWord.toCharArray()==guessedLetters){
-            return true;
-        }
-        return false;
+        return !getDisplayWord().contains("_");
     }
+
 
     public int getLivesRemaining() { return livesRemaining; }
 

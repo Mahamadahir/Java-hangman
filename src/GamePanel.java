@@ -14,7 +14,6 @@ public class GamePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // simple example – more detailed drawing could be added
         if (livesRemaining <= 5) {
             g.drawOval(50, 20, 40, 40); // head
         }
