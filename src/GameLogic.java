@@ -10,7 +10,7 @@ public class GameLogic {
     public GameLogic(Word word) {
         this.currentWord = word;
         this.guessedLetters = new char[word.getWordLength()];
-        this.livesRemaining = 6;
+        this.livesRemaining = 10;
         this.wrongGuesses = new ArrayList<>();
     }
 
@@ -41,17 +41,15 @@ public class GameLogic {
         return new String(letters);
     }
 
-    public boolean isGameOver(User user) {
-        return livesRemaining == 0 || hasWon(user);
+    public boolean isGameOver() {
+        return livesRemaining == 0 || hasWon();
     }
 
-    public boolean hasWon(User user) {
+    public boolean hasWon() {
         // Return true if all letters guessed
         if(currentWord.toCharArray()==guessedLetters){
-            user.won();
             return true;
         }
-        user.lost();
         return false;
     }
 
