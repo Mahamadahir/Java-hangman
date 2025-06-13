@@ -1,9 +1,10 @@
+// GamePanel.java
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
     private int mistakesMade;
-    private char[] guessedLetters;  // Added for drawing letter boxes
+    private char[] guessedLetters;
     private int wordLength;
 
     public GamePanel() {

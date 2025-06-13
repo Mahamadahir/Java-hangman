@@ -1,55 +1,64 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class HangmanGame {
     public static void main(String[] args) {
         WordBank bank = new WordBank("assets/words.json");
         GameLogic logic = new GameLogic(bank.getRandomWord());
 
-        JFrame frame = new JFrame("Visual Hangman");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
-        frame.setLocationRelativeTo(null);
+        // Create core components
+        GamePanel gamePanel = new GamePanel();
+        WordDisplayPanel wordDisplay = new WordDisplayPanel();
+        KeyboardPanel keyboardPanel = new KeyboardPanel();
+        JLabel infoLabel = new JLabel("Wrong guesses: ", SwingConstants.CENTER);
 
-        JLabel wrongLabel = new JLabel("Wrong guesses: ", SwingConstants.CENTER);
+        // Initial UI state
+        gamePanel.setMistakesMade(0);
+        gamePanel.setGuessedLetters(logic.getGuessedLetters());
+        gamePanel.setWordLength(logic.getCurrentWord().getWordLength());
 
-        GamePanel panel = new GamePanel();
-        panel.setMistakesMade(0);
-        panel.setGuessedLetters(logic.getGuessedLetters());
-        panel.setWordLength(logic.getCurrentWord().getWordLength());
+        wordDisplay.setWordState(logic.getGuessedLetters(), logic.getCurrentWord().getWordLength());
 
-        frame.setLayout(new BorderLayout());
-        frame.add(panel, BorderLayout.CENTER);
-        frame.add(wrongLabel, BorderLayout.SOUTH);
+        // Wire keyboard buttons
+        Map<Character, JButton> buttons = keyboardPanel.getKeyButtons();
+        for (Map.Entry<Character, JButton> entry : buttons.entrySet()) {
+            char letter = entry.getKey();
+            JButton button = entry.getValue();
 
-        frame.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if (!logic.isGameOver()) {
-                    char c = Character.toLowerCase(e.getKeyChar());
-                    if (Character.isLetter(c)) {
-                        logic.guess(c);
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if (!logic.isGameOver()) {
+                        boolean correct = logic.guess(letter);
 
-                        // Update visual panel
-                        panel.setMistakesMade(logic.getMistakesMade());
-                        panel.setGuessedLetters(logic.getGuessedLetters());
-                        panel.repaint();
+                        // Update visuals
+                        gamePanel.setMistakesMade(logic.getMistakesMade());
+                        gamePanel.setGuessedLetters(logic.getGuessedLetters());
+                        wordDisplay.setWordState(logic.getGuessedLetters(), logic.getCurrentWord().getWordLength());
 
-                        wrongLabel.setText("Wrong guesses: " + logic.getWrongGuesses());
+                        Color resultColor = correct ? new Color(144, 238, 144) : new Color(255, 102, 102);
+                        keyboardPanel.updateKeyColor(letter, resultColor);
+
+                        infoLabel.setText("Wrong guesses: " + logic.getWrongGuesses());
+
+                        // Disable button after guess
+                        button.setEnabled(false);
 
                         if (logic.isGameOver()) {
-                            JOptionPane.showMessageDialog(frame,
-                                    logic.hasWon() ? "You win!" : "You lose!",
+                            JOptionPane.showMessageDialog(null,
+                                    logic.hasWon() ? "🎉 You win!" : "💀 You lose!",
                                     "Game Over",
                                     JOptionPane.INFORMATION_MESSAGE);
                         }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        frame.setVisible(true);
+        // Launch app
+        SwingUtilities.invokeLater(() -> new AppFrame(gamePanel, wordDisplay, keyboardPanel, infoLabel));
     }
 }
