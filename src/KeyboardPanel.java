@@ -79,4 +79,14 @@ public class KeyboardPanel extends JPanel {
             btn.setBorderPainted(false);
         }
     }
+    public void resetKeyboard() {
+        for (JButton btn : keyButtons.values()) {
+            btn.setEnabled(true);
+            btn.setBackground(null);
+            btn.setOpaque(false);
+            btn.setBorderPainted(true);
+        }
+        requestFocusInWindow(); // ensures keyboard input still works
+    }
+
 }

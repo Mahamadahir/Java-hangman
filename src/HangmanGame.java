@@ -2,25 +2,38 @@ import javax.swing.*;
 import java.awt.*;
 
 public class HangmanGame {
+    private static WordBank bank;
+    private static GameLogic logic;
+    private static GamePanel gamePanel;
+    private static WordDisplayPanel wordDisplay;
+    private static KeyboardPanel keyboardPanel;
+    private static JLabel infoLabel;
+
     public static void main(String[] args) {
-        WordBank bank = new WordBank("assets/words.json");
-        GameLogic logic = new GameLogic(bank.getRandomWord());
+        SwingUtilities.invokeLater(() -> {
+            bank = new WordBank("assets/words.json");
+            gamePanel = new GamePanel();
+            wordDisplay = new WordDisplayPanel();
+            keyboardPanel = new KeyboardPanel();
+            infoLabel = new JLabel("Wrong guesses: ", SwingConstants.CENTER);
 
-        GamePanel gamePanel = new GamePanel();
-        WordDisplayPanel wordDisplay = new WordDisplayPanel();
-        KeyboardPanel keyboardPanel = new KeyboardPanel();
-        JLabel infoLabel = new JLabel("Wrong guesses: ", SwingConstants.CENTER);
+            new AppFrame(gamePanel, wordDisplay, keyboardPanel, infoLabel);
+            startNewGame();
+        });
+    }
 
-        // Initial state setup
+    public static void startNewGame() {
+        logic = new GameLogic(bank.getRandomWord());
+
         gamePanel.setMistakesMade(0);
         wordDisplay.setWordState(logic.getGuessedLetters(), logic.getCurrentWord().getWordLength());
+        infoLabel.setText("Wrong guesses: ");
+        keyboardPanel.resetKeyboard();  // you must implement this method
 
-        // Let the keyboard panel manage button and key input
         keyboardPanel.setKeyPressListener(letter -> {
             if (!logic.isGameOver()) {
                 boolean correct = logic.guess(letter);
 
-                // Update display components
                 gamePanel.setMistakesMade(logic.getMistakesMade());
                 wordDisplay.setWordState(logic.getGuessedLetters(), logic.getCurrentWord().getWordLength());
 
@@ -33,14 +46,14 @@ public class HangmanGame {
                     String message = logic.hasWon()
                             ? "🎉 You win!"
                             : "💀 You lose! The correct word was: " + logic.getCurrentWord().getWord();
-                    JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                    int choice = JOptionPane.showConfirmDialog(null, message + "\nPlay again?", "Game Over", JOptionPane.YES_NO_OPTION);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        startNewGame();
+                    } else {
+                        System.exit(0);
+                    }
                 }
             }
         });
-
-        // Launch the application
-        SwingUtilities.invokeLater(() ->
-                new AppFrame(gamePanel, wordDisplay, keyboardPanel, infoLabel)
-        );
     }
 }
