@@ -37,8 +37,8 @@ public class KeyboardPanel extends JPanel {
             for (char c : row.toCharArray()) {
                 JButton btn = new JButton(String.valueOf(c));
                 btn.setFocusable(false);
-                btn.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
-                btn.setPreferredSize(new Dimension(45, 45));
+                btn.setFont(new Font("Dialog", Font.BOLD, 20)); // more compact
+                btn.setPreferredSize(new Dimension(55, 50));    // wider box
                 btn.setHorizontalAlignment(SwingConstants.CENTER);
                 btn.setVerticalAlignment(SwingConstants.CENTER);
                 char upperC = c;
