@@ -13,13 +13,14 @@ public class HangmanGame {
         frame.setSize(600, 400);
         frame.setLocationRelativeTo(null);
 
-        JLabel wordLabel = new JLabel(logic.getDisplayWord(), SwingConstants.CENTER);
-        JLabel wrongLabel = new JLabel("", SwingConstants.CENTER);
+        JLabel wrongLabel = new JLabel("Wrong guesses: ", SwingConstants.CENTER);
+
         GamePanel panel = new GamePanel();
-        panel.setLivesRemaining(logic.getLivesRemaining());
+        panel.setMistakesMade(0);
+        panel.setGuessedLetters(logic.getGuessedLetters());
+        panel.setWordLength(logic.getCurrentWord().getWordLength());
 
         frame.setLayout(new BorderLayout());
-        frame.add(wordLabel, BorderLayout.NORTH);
         frame.add(panel, BorderLayout.CENTER);
         frame.add(wrongLabel, BorderLayout.SOUTH);
 
@@ -27,12 +28,17 @@ public class HangmanGame {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (!logic.isGameOver()) {
-                    char c = e.getKeyChar();
+                    char c = Character.toLowerCase(e.getKeyChar());
                     if (Character.isLetter(c)) {
                         logic.guess(c);
-                        wordLabel.setText(logic.getDisplayWord());
+
+                        // Update visual panel
+                        panel.setMistakesMade(logic.getMistakesMade());
+                        panel.setGuessedLetters(logic.getGuessedLetters());
+                        panel.repaint();
+
                         wrongLabel.setText("Wrong guesses: " + logic.getWrongGuesses());
-                        panel.setLivesRemaining(logic.getLivesRemaining());
+
                         if (logic.isGameOver()) {
                             JOptionPane.showMessageDialog(frame,
                                     logic.hasWon() ? "You win!" : "You lose!",

@@ -5,12 +5,13 @@ public class GameLogic {
     private Word currentWord;
     private char[] guessedLetters;
     private int livesRemaining;
+    private final int totalLives = 6; // Adjustable
     private List<Character> wrongGuesses;
 
     public GameLogic(Word word) {
         this.currentWord = word;
         this.guessedLetters = new char[word.getWordLength()];
-        this.livesRemaining = 10;
+        this.livesRemaining = totalLives;
         this.wrongGuesses = new ArrayList<>();
     }
 
@@ -26,13 +27,14 @@ public class GameLogic {
         }
 
         if (!found) {
-            livesRemaining--;
-            wrongGuesses.add(letter);
+            if (!wrongGuesses.contains(letter)) {
+                livesRemaining--;
+                wrongGuesses.add(letter);
+            }
         }
 
         return found;
     }
-
 
     public String getDisplayWord() {
         char[] display = new char[currentWord.getWordLength()];
@@ -63,8 +65,24 @@ public class GameLogic {
         return !getDisplayWord().contains("_");
     }
 
+    // ✅ New Methods for Integration
+    public char[] getGuessedLetters() {
+        return guessedLetters;
+    }
 
-    public int getLivesRemaining() { return livesRemaining; }
+    public Word getCurrentWord() {
+        return currentWord;
+    }
 
-    public List<Character> getWrongGuesses() { return wrongGuesses; }
+    public int getMistakesMade() {
+        return totalLives - livesRemaining;
+    }
+
+    public int getLivesRemaining() {
+        return livesRemaining;
+    }
+
+    public List<Character> getWrongGuesses() {
+        return wrongGuesses;
+    }
 }
