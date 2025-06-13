@@ -1,52 +1,51 @@
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class WordBank {
     private List<Word> words;
-    Random random = new Random();
+    private Random random = new Random();
 
     public WordBank(String filePath) {
         loadWordsFromJson(filePath);
     }
 
     private void loadWordsFromJson(String path) {
-        // Parse JSON into List<Word>
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            words = mapper.readValue(
-                    new File(path),
-                    new TypeReference<List<Word>>() {}
-            );
+        try (FileReader reader = new FileReader(path)) {
+            Gson gson = new Gson();
+            Type wordListType = new TypeToken<List<Word>>() {}.getType();
+            words = gson.fromJson(reader, wordListType);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            words = new ArrayList<>(); // fallback to empty list
         }
-
-
     }
 
     public Word getRandomWord() {
-        // Return a random word from the list
+        if (words.isEmpty()) {
+            return new Word("empty", "easy", 5);
+        }
         return words.get(random.nextInt(words.size()));
-
     }
 
     public Word getRandomWordByDifficulty(String difficulty) {
-        // Return a filtered random word by difficulty
-        List<Word> filteredList = words;
+        List<Word> filteredList = new ArrayList<>();
         for (Word word : words) {
-            if ((word.getDifficulty()).equals(difficulty)) {
+            if (word.getDifficulty().equalsIgnoreCase(difficulty)) {
                 filteredList.add(word);
             }
         }
-        if(filteredList.isEmpty()){
-            return new Word("Emtpy","Easy", 5);
+
+        if (filteredList.isEmpty()) {
+            return new Word("empty", difficulty, 5);
         }
+
         return filteredList.get(random.nextInt(filteredList.size()));
     }
 
