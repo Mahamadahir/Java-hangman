@@ -2,11 +2,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
 public class KeyboardPanel extends JPanel {
     private final Map<Character, JButton> keyButtons = new HashMap<>();
+
+    public interface KeyPressListener {
+        void onKeyPressed(char letter);
+    }
+
+    private KeyPressListener listener;
+
+    public void setKeyPressListener(KeyPressListener listener) {
+        this.listener = listener;
+    }
 
     public KeyboardPanel() {
         setLayout(new GridLayout(3, 1, 5, 5));
@@ -30,6 +41,13 @@ public class KeyboardPanel extends JPanel {
                 btn.setPreferredSize(new Dimension(45, 45));
                 btn.setHorizontalAlignment(SwingConstants.CENTER);
                 btn.setVerticalAlignment(SwingConstants.CENTER);
+                char upperC = c;
+                btn.addActionListener(e -> {
+                    if (listener != null) {
+                        btn.setEnabled(false);
+                        listener.onKeyPressed(upperC);
+                    }
+                });
                 keyButtons.put(c, btn);
                 rowPanel.add(btn);
             }
