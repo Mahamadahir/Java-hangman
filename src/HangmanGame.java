@@ -30,10 +30,10 @@ public class HangmanGame {
                 infoLabel.setText("Wrong guesses: " + logic.getWrongGuesses());
 
                 if (logic.isGameOver()) {
-                    JOptionPane.showMessageDialog(null,
-                            logic.hasWon() ? "🎉 You win!" : "💀 You lose!",
-                            "Game Over",
-                            JOptionPane.INFORMATION_MESSAGE);
+                    String message = logic.hasWon()
+                            ? "🎉 You win!"
+                            : "💀 You lose! The correct word was: " + logic.getCurrentWord().getWord();
+                    JOptionPane.showMessageDialog(null, message, "Game Over", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

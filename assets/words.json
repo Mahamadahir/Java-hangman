@@ -1,5 +1,18 @@
 [
   { "word": "apple", "difficulty": "easy", "wordLength": 5 },
+  { "word": "bread", "difficulty": "easy", "wordLength": 5 },
+  { "word": "chair", "difficulty": "easy", "wordLength": 5 },
+  { "word": "pencil", "difficulty": "easy", "wordLength": 6 },
+  { "word": "window", "difficulty": "easy", "wordLength": 6 },
   { "word": "computer", "difficulty": "medium", "wordLength": 8 },
-  { "word": "encyclopedia", "difficulty": "hard", "wordLength": 12 }
+  { "word": "backpack", "difficulty": "medium", "wordLength": 8 },
+  { "word": "electric", "difficulty": "medium", "wordLength": 8 },
+  { "word": "umbrella", "difficulty": "medium", "wordLength": 8 },
+  { "word": "triangle", "difficulty": "medium", "wordLength": 8 },
+  { "word": "encyclopedia", "difficulty": "hard", "wordLength": 12 },
+  { "word": "subterranean", "difficulty": "hard", "wordLength": 12 },
+  { "word": "university", "difficulty": "hard", "wordLength": 10 },
+  { "word": "microbiology", "difficulty": "hard", "wordLength": 13 },
+  { "word": "architectural", "difficulty": "hard", "wordLength": 13 }
 ]
+
