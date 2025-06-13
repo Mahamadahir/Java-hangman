@@ -16,6 +16,7 @@ public class GameLogic {
     }
 
     public boolean guess(char letter) {
+        letter = Character.toLowerCase(letter);  // 👈 Ensure consistent case
         boolean found = false;
         char[] actualChars = currentWord.toCharArray();
 
@@ -26,34 +27,19 @@ public class GameLogic {
             }
         }
 
-        if (!found) {
-            if (!wrongGuesses.contains(letter)) {
-                livesRemaining--;
-                wrongGuesses.add(letter);
-            }
+        if (!found && !wrongGuesses.contains(letter)) {
+            livesRemaining--;
+            wrongGuesses.add(letter);
         }
 
         return found;
     }
 
     public String getDisplayWord() {
-        char[] display = new char[currentWord.getWordLength()];
-        char[] actualChars = currentWord.toCharArray();
-
-        for (int i = 0; i < actualChars.length; i++) {
-            char current = actualChars[i];
-            boolean guessed = false;
-
-            for (char g : guessedLetters) {
-                if (current == g) {
-                    guessed = true;
-                    break;
-                }
-            }
-
-            display[i] = guessed ? current : '_';
+        char[] display = new char[guessedLetters.length];
+        for (int i = 0; i < guessedLetters.length; i++) {
+            display[i] = (guessedLetters[i] == 0) ? '_' : guessedLetters[i];
         }
-
         return new String(display);
     }
 
@@ -65,7 +51,6 @@ public class GameLogic {
         return !getDisplayWord().contains("_");
     }
 
-    // ✅ New Methods for Integration
     public char[] getGuessedLetters() {
         return guessedLetters;
     }
