@@ -1,20 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class UserScreen extends JPanel {
     public interface UserSelectedListener {
         void onUserSelected(User user);
     }
 
-    public UserScreen(UserManager userManager, UserSelectedListener listener) {
+    public UserScreen(ScoreTracker scoreTracker, UserSelectedListener listener) {
         setLayout(new BorderLayout());
 
         JLabel titleLabel = new JLabel("Select or Create User", SwingConstants.CENTER);
         add(titleLabel, BorderLayout.NORTH);
 
         DefaultListModel<User> userListModel = new DefaultListModel<>();
-        for (User user : userManager.getAllUsers()) {
-            userListModel.addElement(user);
+        List<String> usernames = scoreTracker.getAllUsernames();
+        for (String name : usernames) {
+            userListModel.addElement(new User(name));
         }
         JList<User> userJList = new JList<>(userListModel);
         userJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -31,9 +33,11 @@ public class UserScreen extends JPanel {
 
         createBtn.addActionListener(e -> {
             String name = userField.getText().trim();
-            if (!name.isEmpty()) {
-                userManager.addUser(name);
-                User newUser = userManager.getCurrentUser();
+            if (!name.isEmpty() && usernames.stream().noneMatch(existing -> existing.equalsIgnoreCase(name)))
+                {
+                scoreTracker.initializeUser(name);
+                scoreTracker.save();
+                User newUser = new User(name);
                 userListModel.addElement(newUser);
                 listener.onUserSelected(newUser);
             }
@@ -42,7 +46,6 @@ public class UserScreen extends JPanel {
         selectBtn.addActionListener(e -> {
             User selected = userJList.getSelectedValue();
             if (selected != null) {
-                userManager.selectUser(selected);
                 listener.onUserSelected(selected);
             }
         });

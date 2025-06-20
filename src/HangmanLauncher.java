@@ -1,12 +1,12 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class HangmanLauncher {
     private static JFrame frame;
-    private static UserManager userManager = new UserManager();
+    private static final ScoreTracker scoreTracker = new ScoreTracker("assets/scores.json");
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+            scoreTracker.load();  // Load scores (and users) first
             frame = new JFrame("Hangman Launcher");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(600, 400);
@@ -17,15 +17,15 @@ public class HangmanLauncher {
     }
 
     private static void showUserScreen() {
-        UserScreen screen = new UserScreen(userManager, user -> showDifficultyScreen(user));
+        UserScreen screen = new UserScreen(scoreTracker, user -> showDifficultyScreen(user));
         frame.setContentPane(screen);
         frame.revalidate();
     }
 
     private static void showDifficultyScreen(User user) {
-        DifficultyScreen screen = new DifficultyScreen(user,difficulty -> {
-            HangmanGame.launchGame(user, difficulty); // Ensure this method is static and callable
-            frame.dispose(); // Close the launcher window
+        DifficultyScreen screen = new DifficultyScreen(user, difficulty -> {
+            HangmanGame.launchGame(user, difficulty);
+            frame.dispose();
         });
         frame.setContentPane(screen);
         frame.revalidate();

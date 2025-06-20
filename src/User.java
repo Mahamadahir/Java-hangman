@@ -3,6 +3,11 @@ public class User {
     private String difficulty = "easy"; // default
     private int streak = 0;
 
+    @Override
+    public String toString() {
+        return username;
+    }
+
     public User(String username) {
         this.username = username;
     }
