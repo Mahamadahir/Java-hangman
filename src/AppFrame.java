@@ -2,16 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AppFrame extends JFrame {
-    public AppFrame(GamePanel gamePanel, WordDisplayPanel wordDisplay, KeyboardPanel keyboardPanel, JLabel infoLabel) {
+    public AppFrame(GamePanel gamePanel, WordDisplayPanel wordDisplay, KeyboardPanel keyboardPanel, JLabel infoLabel, JLabel streakLabel) {
         setTitle("Visual Hangman");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 500);
+        setSize(700, 530);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BorderLayout());
-        topPanel.add(infoLabel, BorderLayout.CENTER);
+        JPanel topPanel = new JPanel(new GridLayout(2, 1));
+        topPanel.add(streakLabel);
+        topPanel.add(infoLabel);
         topPanel.setOpaque(false);
 
         JPanel centerPanel = new JPanel();

@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4b16394-a3f0-40b5-b340-47b3c93a99cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DifficultyScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HangmanLauncher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UserScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HangmanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ScoreTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoreTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WordBank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WordBank.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AppFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AppFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/HangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/HangmanGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/WordBank$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/WordBank$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/WordBank.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/WordBank.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,70 +48,45 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
   <component name="ProjectId" id="2yKJIZXwMWhhPR11nnZow4IArk8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.HangmanGame (1).executor": "Run",
-    "Application.HangmanGame (2).executor": "Run",
-    "Application.HangmanGame (3).executor": "Run",
-    "Application.HangmanGame (4).executor": "Run",
-    "Application.HangmanGame (5).executor": "Run",
-    "Application.HangmanGame.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Maven.Java-hangman.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "project.structure.last.edited": "Problems",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.HangmanGame (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.HangmanGame (2).executor&quot;: &quot;Run&quot;,
+    &quot;Application.HangmanGame (3).executor&quot;: &quot;Run&quot;,
+    &quot;Application.HangmanGame (4).executor&quot;: &quot;Run&quot;,
+    &quot;Application.HangmanGame (5).executor&quot;: &quot;Run&quot;,
+    &quot;Application.HangmanGame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Java-hangman.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.HangmanGame (5)">
-    <configuration name="HangmanGame (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HangmanGame" />
-      <module name="jackson-demo" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HangmanGame (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HangmanGame" />
-      <module name="jackson-demo" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HangmanGame (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HangmanGame" />
-      <module name="jackson-demo" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="HangmanGame (5)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="HangmanGame" />
       <module name="hangman-game" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HangmanGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HangmanGame" />
-      <module name="jackson-demo" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,10 +122,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.HangmanGame (5)" />
-        <item itemvalue="Application.HangmanGame" />
-        <item itemvalue="Application.HangmanGame (4)" />
-        <item itemvalue="Application.HangmanGame (3)" />
-        <item itemvalue="Application.HangmanGame (2)" />
       </list>
     </recent_temporary>
   </component>

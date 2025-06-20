@@ -7,7 +7,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 public class WordBank {
     private List<Word> words;
     private Random random = new Random();

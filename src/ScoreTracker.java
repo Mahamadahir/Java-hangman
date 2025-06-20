@@ -1,37 +1,65 @@
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ScoreTracker {
-    private int wins;
-    private int losses;
+    private Map<String, int[]> userScores;
+    private String path;
 
-    public void loadScore(String path) {
-        try {
-            if (Files.exists(Path.of(path))) {
-                String[] parts = Files.readString(Path.of(path)).split(",");
-                wins = Integer.parseInt(parts[0]);
-                losses = Integer.parseInt(parts[1]);
-            }
-        } catch (IOException | NumberFormatException e) {
-            wins = 0;
-            losses = 0;
-        }
+    public ScoreTracker(String path) {
+        this.path = path;
+        userScores = new HashMap<>();
     }
 
-    public void saveScore(String path) {
-        String data = wins + "," + losses;
-        try {
-            Files.writeString(Path.of(path), data, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+    public void load() {
+        try (FileReader reader = new FileReader(path)) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<Map<String, int[]>>() {}.getType();
+            userScores = gson.fromJson(reader, type);
+            if (userScores == null) userScores = new HashMap<>();
         } catch (IOException e) {
-            // handle error
+            userScores = new HashMap<>(); // start fresh if file not found
         }
     }
 
-    public void recordWin() { wins++; }
-    public void recordLoss() { losses++; }
+    public void save() {
+        try (FileWriter writer = new FileWriter(path)) {
+            Gson gson = new Gson();
+            gson.toJson(userScores, writer);
+        } catch (IOException e) {
+            System.err.println("Failed to save scores: " + e.getMessage());
+        }
+    }
 
-    public int getWins() { return wins; }
-    public int getLosses() { return losses; }
+    public void recordWin(String username) {
+        int[] stats = userScores.getOrDefault(username, new int[]{0, 0});
+        stats[0]++;
+        userScores.put(username, stats);
+        save(); // Auto-save after win
+    }
+
+    public void recordLoss(String username) {
+        int[] stats = userScores.getOrDefault(username, new int[]{0, 0});
+        stats[1]++;
+        userScores.put(username, stats);
+        save(); // Auto-save after loss
+    }
+
+    public int getWins(String username) {
+        return userScores.getOrDefault(username, new int[]{0, 0})[0];
+    }
+
+    public int getLosses(String username) {
+        return userScores.getOrDefault(username, new int[]{0, 0})[1];
+    }
+
+    public Map<String, int[]> getAllScores() {
+        return userScores;
+    }
 }
