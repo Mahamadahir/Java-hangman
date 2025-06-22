@@ -5,13 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4b16394-a3f0-40b5-b340-47b3c93a99cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Leaderboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/scores.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scores.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/words.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/words.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/HangmanLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HangmanLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ScoreTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ScoreTracker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UserScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UserScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AppFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HangmanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/AppFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/AppFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/HangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/HangmanGame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +93,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="hangman-game" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Java-hangman" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -124,6 +131,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.HangmanLauncher" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.HangmanGame (5)" />
       </list>
     </recent_temporary>

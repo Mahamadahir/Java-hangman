@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class HangmanGame {
     private static WordBank bank;
@@ -9,6 +11,7 @@ public class HangmanGame {
     private static KeyboardPanel keyboardPanel;
     private static JLabel infoLabel;
     private static JLabel streakLabel;
+    private static Set<String> usedWords = new HashSet<>();
 
     private static String difficulty;
     private static User currentUser;
@@ -30,12 +33,19 @@ public class HangmanGame {
         streakLabel = new JLabel("", SwingConstants.CENTER);
         streakLabel.setFont(new Font("SansSerif", Font.BOLD, 14));
 
-        new AppFrame(gamePanel, wordDisplay, keyboardPanel, infoLabel, streakLabel);
+        new AppFrame(gamePanel, wordDisplay, keyboardPanel, infoLabel, streakLabel, scoreTracker);
         startNewGame();
     }
 
     private static void startNewGame() {
-        logic = new GameLogic(bank.getRandomWordByDifficulty(difficulty));
+        Word word;
+        do {
+            word = bank.getRandomWordByDifficulty(difficulty);
+        } while (usedWords.contains(word.getWord()));
+        usedWords.add(word.getWord());
+
+        logic = new GameLogic(word);
+
 
         gamePanel.setMistakesMade(0);
         wordDisplay.setWordState(logic.getGuessedLetters(), logic.getCurrentWord().getWordLength());
@@ -70,14 +80,19 @@ public class HangmanGame {
                             ? "🎉 You win!"
                             : "💀 You lose! The correct word was: " + logic.getCurrentWord().getWord();
 
-                    int choice = JOptionPane.showConfirmDialog(null,
-                            message + "\nPlay again?", "Game Over", JOptionPane.YES_NO_OPTION);
-
-                    if (choice == JOptionPane.YES_OPTION) {
-                        startNewGame();
+                    if (won) {
+                        startNewGame(); // continue streak without asking
                     } else {
-                        System.exit(0);
+                        usedWords.clear();
+                        int choice = JOptionPane.showConfirmDialog(null,
+                                message + "\nPlay again?", "Game Over", JOptionPane.YES_NO_OPTION);
+                        if (choice == JOptionPane.YES_OPTION) {
+                            startNewGame();
+                        } else {
+                            System.exit(0);
+                        }
                     }
+
                 }
             }
         });
