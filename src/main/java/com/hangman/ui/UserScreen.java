@@ -45,9 +45,11 @@ public class UserScreen extends JPanel {
         JTextField inputField = new JTextField(12);
         JButton createButton = new JButton("Create");
         JButton selectButton = new JButton("Select");
+        JButton deleteButton = new JButton("Delete");
         inputPanel.add(inputField);
         inputPanel.add(createButton);
         inputPanel.add(selectButton);
+        inputPanel.add(deleteButton);
         add(inputPanel, BorderLayout.SOUTH);
 
         createButton.addActionListener(e -> {
@@ -69,12 +71,38 @@ public class UserScreen extends JPanel {
             model.addElement(user);
             userList.setSelectedValue(user, true);
             onUserSelected.accept(user);
+            inputField.setText("");
         });
 
         selectButton.addActionListener(e -> {
             User selected = userList.getSelectedValue();
             if (selected != null) {
                 onUserSelected.accept(selected);
+            }
+        });
+
+        deleteButton.addActionListener(e -> {
+            User selected = userList.getSelectedValue();
+            if (selected == null) {
+                JOptionPane.showMessageDialog(this, "Select a user to delete.", "Validation", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int choice = JOptionPane.showConfirmDialog(this,
+                    "Delete user \"" + selected.getUsername() + "\" and all saved stats?",
+                    "Confirm Deletion",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if (choice == JOptionPane.YES_OPTION) {
+                if (tracker.deleteUser(selected.getUsername())) {
+                    tracker.save();
+                    model.removeElement(selected);
+                    inputField.setText("");
+                    if (!model.isEmpty()) {
+                        userList.setSelectedIndex(0);
+                    } else {
+                        userList.clearSelection();
+                    }
+                }
             }
         });
     }

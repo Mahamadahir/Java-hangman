@@ -3,10 +3,12 @@ package com.hangman.ui;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.HierarchyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -48,6 +50,12 @@ public class KeyboardPanel extends JPanel {
                 }
             }
         });
+
+        addHierarchyListener(event -> {
+            if ((event.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && isShowing()) {
+                SwingUtilities.invokeLater(this::requestFocusInWindow);
+            }
+        });
     }
 
     public void setKeyListener(Consumer<Character> listener) {
@@ -61,7 +69,7 @@ public class KeyboardPanel extends JPanel {
             button.setOpaque(false);
             button.setBorderPainted(true);
         });
-        requestFocusInWindow();
+        SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 
     public void disableKey(char letter) {

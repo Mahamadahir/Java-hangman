@@ -97,6 +97,13 @@ public class ScoreTracker {
         return userScores;
     }
 
+    public boolean deleteUser(String username) {
+        if (username == null) {
+            return false;
+        }
+        return userScores.remove(username) != null;
+    }
+
     private static String normalizeDifficulty(String difficulty) {
         return Objects.requireNonNullElse(difficulty, "easy").toLowerCase(Locale.ENGLISH);
     }
