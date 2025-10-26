@@ -19,6 +19,22 @@ If Maven is not installed, open the project in an IDE (IntelliJ IDEA, Eclipse, V
 - In-game status panel with streak and score summary
 - Re-usable leaderboard view for quick stat checks
 - Improved word selection to avoid repeats until all options are used
+- On-screen keyboard mirrors physical keyboard input with visual feedback
+
+## Roadmap
+- [x] Upgrade gameplay loop with persistent score tracking per user
+- [x] Add difficulty selection and streak-aware scoring
+- [x] Refresh UI with modular panels and physical/on-screen keyboard sync
+- [ ] Surface word definitions after each round (locks screen until the player chooses `Continue` or `Play Again`)
+- [ ] Offer rematch flow that keeps current users in-app without relaunching
+- [ ] Add daily challenge mode with rotating curated word sets
+- [ ] Localise UI strings and support multiple languages
+
+## Additional Feature Ideas
+- Word definition modal that appears after a round and stays visible until the player confirms whether they will continue their streak or start a new game.
+- Persistent word history so users can review previously seen words and definitions.
+- Configurable accessibility options (high-contrast palette, adjustable fonts, screen reader hints).
+- Optional sound cues for correct and incorrect guesses with a mute toggle.
 
 ## Project Layout
 ```
