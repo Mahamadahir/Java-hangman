@@ -30,6 +30,11 @@ If Maven is not installed, open the project in an IDE (IntelliJ IDEA, Eclipse, V
 - [ ] Add daily challenge mode with rotating curated word sets
 - [ ] Localise UI strings and support multiple languages
 
+## Progress Tracker
+- Open `ProgressTracker.html` in any browser to view the interactive status board backed by `progress-data.js`.
+- Completed milestones are back-dated to their actual commit windows so you can quickly show what already shipped.
+- Updates are local to your browser via `localStorage` (key `hangman-progress-v1`); clear storage if you want to reset the checkboxes.
+
 ## Additional Feature Ideas
 - Word definition modal that appears after a round and stays visible until the player confirms whether they will continue their streak or start a new game.
 - Persistent word history so users can review previously seen words and definitions.
