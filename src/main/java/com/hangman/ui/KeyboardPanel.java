@@ -1,16 +1,16 @@
 package com.hangman.ui;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -39,22 +39,31 @@ public class KeyboardPanel extends JPanel {
             add(rowPanel);
         }
 
-        setFocusable(true);
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyTyped(KeyEvent event) {
-                char letter = Character.toUpperCase(event.getKeyChar());
-                JButton button = keyButtons.get(letter);
-                if (button != null && button.isEnabled()) {
-                    button.doClick();
-                }
-            }
-        });
+        registerKeyBindings();
+    }
 
-        addHierarchyListener(event -> {
-            if ((event.getChangeFlags() & HierarchyEvent.SHOWING_CHANGED) != 0 && isShowing()) {
-                SwingUtilities.invokeLater(this::requestFocusInWindow);
-            }
+    /**
+     * Registers each letter as a window-scoped key binding. Using
+     * {@code WHEN_IN_FOCUSED_WINDOW} (instead of a focus-dependent KeyListener)
+     * means physical keystrokes are honoured whenever the game window is
+     * focused, regardless of which component currently holds focus.
+     */
+    private void registerKeyBindings() {
+        keyButtons.forEach((letter, button) -> {
+            String actionKey = "type-" + letter;
+            // VK code for A-Z equals the uppercase char value.
+            int keyCode = letter;
+            getInputMap(WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(keyCode, 0), actionKey);
+            getInputMap(WHEN_IN_FOCUSED_WINDOW)
+                    .put(KeyStroke.getKeyStroke(keyCode, InputEvent.SHIFT_DOWN_MASK), actionKey);
+            getActionMap().put(actionKey, new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent event) {
+                    if (button.isEnabled()) {
+                        button.doClick();
+                    }
+                }
+            });
         });
     }
 
@@ -69,7 +78,6 @@ public class KeyboardPanel extends JPanel {
             button.setOpaque(false);
             button.setBorderPainted(true);
         });
-        SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 
     public void highlightKey(char letter, boolean correct) {
