@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingWorker;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Window;
@@ -27,6 +26,8 @@ public class DefinitionDialog extends JDialog {
 
     public enum Choice {
         CONTINUE,
+        CHANGE_DIFFICULTY,
+        SWITCH_PLAYER,
         QUIT
     }
 
@@ -72,11 +73,17 @@ public class DefinitionDialog extends JDialog {
 
         JButton continueButton = new JButton("Continue");
         continueButton.addActionListener(e -> finish(Choice.CONTINUE));
+        JButton changeDifficultyButton = new JButton("Change difficulty");
+        changeDifficultyButton.addActionListener(e -> finish(Choice.CHANGE_DIFFICULTY));
+        JButton switchPlayerButton = new JButton("Switch player");
+        switchPlayerButton.addActionListener(e -> finish(Choice.SWITCH_PLAYER));
         JButton quitButton = new JButton("Quit");
         quitButton.addActionListener(e -> finish(Choice.QUIT));
 
-        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
+        JPanel buttons = new JPanel(new GridLayout(2, 2, 8, 8));
         buttons.add(continueButton);
+        buttons.add(changeDifficultyButton);
+        buttons.add(switchPlayerButton);
         buttons.add(quitButton);
         content.add(buttons, BorderLayout.SOUTH);
 

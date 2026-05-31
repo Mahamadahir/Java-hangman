@@ -1,6 +1,7 @@
 package com.hangman.app;
 
 import com.hangman.controller.GameController;
+import com.hangman.controller.GameNavigation;
 import com.hangman.model.User;
 import com.hangman.persistence.ScoreTracker;
 import com.hangman.persistence.WordBank;
@@ -63,8 +64,27 @@ public class HangmanLauncher {
     }
 
     private void startGame(User user, String difficulty) {
-        frame.dispose();
-        GameController controller = new GameController(wordBank, scoreTracker, dictionary, user, difficulty);
+        frame.setVisible(false);
+        GameNavigation navigation = new GameNavigation() {
+            @Override
+            public void changeDifficulty() {
+                showDifficultyScreen(user);
+                frame.setVisible(true);
+            }
+
+            @Override
+            public void switchPlayer() {
+                showUserScreen();
+                frame.setVisible(true);
+            }
+
+            @Override
+            public void exit() {
+                frame.dispose();
+            }
+        };
+        GameController controller =
+                new GameController(wordBank, scoreTracker, dictionary, user, difficulty, navigation);
         controller.start();
     }
 }

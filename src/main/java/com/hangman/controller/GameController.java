@@ -27,6 +27,7 @@ public class GameController {
     private final WordBank wordBank;
     private final ScoreTracker scoreTracker;
     private final DictionaryProvider dictionary;
+    private final GameNavigation navigation;
     private final User user;
     private final String difficulty;
 
@@ -41,10 +42,11 @@ public class GameController {
     private AppFrame appFrame;
 
     public GameController(WordBank wordBank, ScoreTracker scoreTracker, DictionaryProvider dictionary,
-                          User user, String difficulty) {
+                          User user, String difficulty, GameNavigation navigation) {
         this.wordBank = wordBank;
         this.scoreTracker = scoreTracker;
         this.dictionary = dictionary;
+        this.navigation = navigation;
         this.user = user;
         this.difficulty = difficulty;
     }
@@ -100,13 +102,25 @@ public class GameController {
                 logic.getTargetWord().getValue(), dictionary);
         DefinitionDialog.Choice choice = dialog.showDialog();
 
-        if (choice == DefinitionDialog.Choice.CONTINUE) {
-            if (!won) {
-                usedWords.clear();
+        switch (choice) {
+            case CONTINUE -> {
+                if (!won) {
+                    usedWords.clear();
+                }
+                startNewRound();
             }
-            startNewRound();
-        } else {
-            appFrame.dispose();
+            case CHANGE_DIFFICULTY -> {
+                appFrame.dispose();
+                navigation.changeDifficulty();
+            }
+            case SWITCH_PLAYER -> {
+                appFrame.dispose();
+                navigation.switchPlayer();
+            }
+            case QUIT -> {
+                appFrame.dispose();
+                navigation.exit();
+            }
         }
     }
 

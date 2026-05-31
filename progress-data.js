@@ -293,21 +293,21 @@
       "title": "Seamless Rematch Flow",
       "start": "2025-11-10",
       "due": "2025-11-19",
-      "state": "pending",
+      "state": "complete",
       "methods": [
         {
           "id": "method-rematch-controller",
           "title": "Rematch controller keep-alive",
           "start": "2025-11-10",
           "due": "2025-11-16",
-          "state": "pending",
+          "state": "complete",
           "tests": [
             {
               "id": "test-rematch-flow",
               "title": "Rematch reuses user roster without relaunch",
               "start": "2025-11-10",
               "due": "2025-11-16",
-              "state": "pending"
+              "state": "complete"
             }
           ]
         },
@@ -316,14 +316,14 @@
           "title": "Scoreboard carry-over + streak reset logic",
           "start": "2025-11-12",
           "due": "2025-11-19",
-          "state": "pending",
+          "state": "complete",
           "tests": [
             {
               "id": "test-rematch-scores",
               "title": "Score validation across rematches",
               "start": "2025-11-12",
               "due": "2025-11-19",
-              "state": "pending"
+              "state": "complete"
             }
           ]
         }
