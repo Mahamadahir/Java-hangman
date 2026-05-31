@@ -20,12 +20,13 @@ If Maven is not installed, open the project in an IDE (IntelliJ IDEA, Eclipse, V
 - Re-usable leaderboard view for quick stat checks
 - Improved word selection to avoid repeats until all options are used
 - On-screen keyboard mirrors physical keyboard input with visual feedback
+- Post-round definition modal reveals the word's meaning and locks input until you continue or quit (definitions fetched from dictionaryapi.dev and cached per word)
 
 ## Roadmap
 - [x] Upgrade gameplay loop with persistent score tracking per user
 - [x] Add difficulty selection and streak-aware scoring
 - [x] Refresh UI with modular panels and physical/on-screen keyboard sync
-- [ ] Surface word definitions after each round (locks screen until the player chooses `Continue` or `Play Again`)
+- [x] Surface word definitions after each round (locks screen until the player chooses `Continue` or `Quit`)
 - [ ] Offer rematch flow that keeps current users in-app without relaunching
 - [ ] Add daily challenge mode with rotating curated word sets
 - [ ] Localise UI strings and support multiple languages

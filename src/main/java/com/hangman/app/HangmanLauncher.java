@@ -4,6 +4,7 @@ import com.hangman.controller.GameController;
 import com.hangman.model.User;
 import com.hangman.persistence.ScoreTracker;
 import com.hangman.persistence.WordBank;
+import com.hangman.service.DictionaryProvider;
 import com.hangman.ui.DifficultyScreen;
 import com.hangman.ui.UserScreen;
 
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 public class HangmanLauncher {
     private final ScoreTracker scoreTracker;
     private final WordBank wordBank;
+    private final DictionaryProvider dictionary = new DictionaryProvider();
 
     private JFrame frame;
 
@@ -62,7 +64,7 @@ public class HangmanLauncher {
 
     private void startGame(User user, String difficulty) {
         frame.dispose();
-        GameController controller = new GameController(wordBank, scoreTracker, user, difficulty);
+        GameController controller = new GameController(wordBank, scoreTracker, dictionary, user, difficulty);
         controller.start();
     }
 }

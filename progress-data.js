@@ -1,5 +1,5 @@
 ﻿window.progressData = {
-  "generatedAt": "2025-11-07T07:42:00Z",
+  "generatedAt": "2026-05-31T00:00:00Z",
   "features": [
     {
       "id": "feature-foundations",
@@ -252,21 +252,21 @@
       "title": "Post-Round Word Definitions",
       "start": "2025-11-03",
       "due": "2025-11-12",
-      "state": "pending",
+      "state": "complete",
       "methods": [
         {
           "id": "method-definition-modal",
           "title": "Definition modal + lock screen",
           "start": "2025-11-03",
           "due": "2025-11-10",
-          "state": "pending",
+          "state": "complete",
           "tests": [
             {
               "id": "test-definition-modal",
               "title": "Modal blocks inputs until continue",
               "start": "2025-11-03",
               "due": "2025-11-10",
-              "state": "pending"
+              "state": "complete"
             }
           ]
         },
@@ -275,14 +275,14 @@
           "title": "Dictionary provider + caching",
           "start": "2025-11-04",
           "due": "2025-11-12",
-          "state": "pending",
+          "state": "complete",
           "tests": [
             {
               "id": "test-dictionary-cache",
               "title": "Dictionary lookups cached per word",
               "start": "2025-11-04",
               "due": "2025-11-12",
-              "state": "pending"
+              "state": "complete"
             }
           ]
         }

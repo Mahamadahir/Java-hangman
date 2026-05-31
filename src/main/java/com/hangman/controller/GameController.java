@@ -5,14 +5,15 @@ import com.hangman.model.User;
 import com.hangman.model.Word;
 import com.hangman.persistence.ScoreTracker;
 import com.hangman.persistence.WordBank;
+import com.hangman.service.DictionaryProvider;
 import com.hangman.ui.AppFrame;
 import com.hangman.ui.GamePanel;
 import com.hangman.ui.KeyboardPanel;
 import com.hangman.ui.WordDisplayPanel;
+import com.hangman.ui.dialog.DefinitionDialog;
 import com.hangman.ui.dialog.LeaderboardDialog;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,6 +26,7 @@ import java.util.Set;
 public class GameController {
     private final WordBank wordBank;
     private final ScoreTracker scoreTracker;
+    private final DictionaryProvider dictionary;
     private final User user;
     private final String difficulty;
 
@@ -38,9 +40,11 @@ public class GameController {
     private GameLogic logic;
     private AppFrame appFrame;
 
-    public GameController(WordBank wordBank, ScoreTracker scoreTracker, User user, String difficulty) {
+    public GameController(WordBank wordBank, ScoreTracker scoreTracker, DictionaryProvider dictionary,
+                          User user, String difficulty) {
         this.wordBank = wordBank;
         this.scoreTracker = scoreTracker;
+        this.dictionary = dictionary;
         this.user = user;
         this.difficulty = difficulty;
     }
@@ -89,22 +93,20 @@ public class GameController {
         updateStreakLabel();
 
         String message = won
-                ? "Well played! You uncovered " + logic.getTargetWord().getValue().toUpperCase() + "."
-                : "Out of lives! The word was " + logic.getTargetWord().getValue().toUpperCase() + ".";
+                ? "Well played! You uncovered the word."
+                : "Out of lives! Better luck next time.";
 
-        if (won) {
-            JOptionPane.showMessageDialog(appFrame, message, "Round Complete", JOptionPane.INFORMATION_MESSAGE);
+        DefinitionDialog dialog = new DefinitionDialog(appFrame, message,
+                logic.getTargetWord().getValue(), dictionary);
+        DefinitionDialog.Choice choice = dialog.showDialog();
+
+        if (choice == DefinitionDialog.Choice.CONTINUE) {
+            if (!won) {
+                usedWords.clear();
+            }
             startNewRound();
         } else {
-            int choice = JOptionPane.showConfirmDialog(appFrame,
-                    message + "\nPlay another round?", "Round Complete",
-                    JOptionPane.YES_NO_OPTION);
-            if (choice == JOptionPane.YES_OPTION) {
-                usedWords.clear();
-                startNewRound();
-            } else {
-                appFrame.dispose();
-            }
+            appFrame.dispose();
         }
     }
 
