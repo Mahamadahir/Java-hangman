@@ -72,13 +72,6 @@ public class KeyboardPanel extends JPanel {
         SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 
-    public void disableKey(char letter) {
-        JButton button = keyButtons.get(Character.toUpperCase(letter));
-        if (button != null) {
-            button.setEnabled(false);
-        }
-    }
-
     public void highlightKey(char letter, boolean correct) {
         JButton button = keyButtons.get(Character.toUpperCase(letter));
         if (button != null) {
