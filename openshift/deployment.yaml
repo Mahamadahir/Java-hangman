@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hangman
+  labels:
+    app: hangman
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hangman
+  template:
+    metadata:
+      labels:
+        app: hangman
+    spec:
+      containers:
+        - name: hangman
+          image: image-registry.openshift-image-registry.svc:5000/hangman/hangman:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://hangman-db:5432/hangman
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hangman-db
+                  key: database-user
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: hangman-db
+                  key: database-password
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 100m
+              memory: 384Mi
+            limits:
+              cpu: 500m
+              memory: 768Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hangman
+  labels:
+    app: hangman
+spec:
+  selector:
+    app: hangman
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hangman
+  labels:
+    app: hangman
+spec:
+  to:
+    kind: Service
+    name: hangman
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+---
+# Claims the public hostname so the router matches the Host header Cloudflare
+# forwards. Without this the custom domain returns 503 even though DNS is correct.
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: hangman-domain
+  labels:
+    app: hangman
+spec:
+  host: hangman.mahamadahir.com
+  to:
+    kind: Service
+    name: hangman
+  port:
+    targetPort: 8080
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
