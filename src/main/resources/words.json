@@ -1,0 +1,797 @@
+[
+  {
+    "word": "apple",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "beach",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "bird",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "book",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "bread",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "cake",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "cat",
+    "difficulty": "easy",
+    "wordLength": 3
+  },
+  {
+    "word": "chair",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "clock",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "cloud",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "dance",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "dog",
+    "difficulty": "easy",
+    "wordLength": 3
+  },
+  {
+    "word": "door",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "eagle",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "field",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "fire",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "fish",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "frog",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "glass",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "grape",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "grass",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "green",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "happy",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "horse",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "house",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "leaf",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "lemon",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "light",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "lion",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "mango",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "milk",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "moon",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "mouse",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "music",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "night",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "ocean",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "panda",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "paper",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "peach",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "phone",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "piano",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "plant",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "rain",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "rice",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "river",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "rock",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "sand",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "shark",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "sheep",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "smile",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "snake",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "snow",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "soup",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "star",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "stone",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "storm",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "sun",
+    "difficulty": "easy",
+    "wordLength": 3
+  },
+  {
+    "word": "table",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "tiger",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "tree",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "water",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "wind",
+    "difficulty": "easy",
+    "wordLength": 4
+  },
+  {
+    "word": "zebra",
+    "difficulty": "easy",
+    "wordLength": 5
+  },
+  {
+    "word": "adventure",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "alligator",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "astronaut",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "basketball",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "binoculars",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "butterfly",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "caterpillar",
+    "difficulty": "hard",
+    "wordLength": 11
+  },
+  {
+    "word": "celebration",
+    "difficulty": "hard",
+    "wordLength": 11
+  },
+  {
+    "word": "chocolate",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "dangerous",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "dictionary",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "education",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "electricity",
+    "difficulty": "hard",
+    "wordLength": 11
+  },
+  {
+    "word": "friendship",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "furniture",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "geography",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "happiness",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "helicopter",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "imagination",
+    "difficulty": "hard",
+    "wordLength": 11
+  },
+  {
+    "word": "important",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "knowledge",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "landscape",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "lighthouse",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "microscope",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "neighbour",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "newspaper",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "orchestra",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "pineapple",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "playground",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "raspberry",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "restaurant",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "strawberry",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "telephone",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "television",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "understand",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "vegetable",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "waterfall",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "watermelon",
+    "difficulty": "hard",
+    "wordLength": 10
+  },
+  {
+    "word": "xylophone",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "yesterday",
+    "difficulty": "hard",
+    "wordLength": 9
+  },
+  {
+    "word": "airport",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "anchor",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "avocado",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "balloon",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "bedroom",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "biscuit",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "blanket",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "cabbage",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "camera",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "carrot",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "compass",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "desert",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "dinosaur",
+    "difficulty": "medium",
+    "wordLength": 8
+  },
+  {
+    "word": "dolphin",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "donkey",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "dragon",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "evening",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "flower",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "forest",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "garden",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "guitar",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "harbour",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "holiday",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "island",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "journey",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "jungle",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "kangaroo",
+    "difficulty": "medium",
+    "wordLength": 8
+  },
+  {
+    "word": "kitchen",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "lantern",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "library",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "meadow",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "monkey",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "morning",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "mountain",
+    "difficulty": "medium",
+    "wordLength": 8
+  },
+  {
+    "word": "parrot",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "pencil",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "pillow",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "popcorn",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "pumpkin",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "rabbit",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "rainbow",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "spider",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "spinach",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "station",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "sunrise",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "sunset",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "thunder",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "trumpet",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "turtle",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "umbrella",
+    "difficulty": "medium",
+    "wordLength": 8
+  },
+  {
+    "word": "valley",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "village",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "violin",
+    "difficulty": "medium",
+    "wordLength": 6
+  },
+  {
+    "word": "weather",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "weekend",
+    "difficulty": "medium",
+    "wordLength": 7
+  },
+  {
+    "word": "window",
+    "difficulty": "medium",
+    "wordLength": 6
+  }
+]

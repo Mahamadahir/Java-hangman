@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="app">
+    <header class="topbar">
+        <h1>Hangman</h1>
+        <button id="leaderboardToggle" class="ghost-button" type="button">Leaderboard</button>
+    </header>
+
+    <section id="startScreen" class="card">
+        <h2>New game</h2>
+        <label class="field">
+            <span>Your name</span>
+            <input id="playerName" type="text" maxlength="20" autocomplete="off" placeholder="e.g. Mahamad">
+        </label>
+        <label class="field">
+            <span>Difficulty</span>
+            <select id="difficulty">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </label>
+        <button id="startButton" class="primary-button" type="button">Play</button>
+        <p id="startError" class="error" hidden></p>
+    </section>
+
+    <section id="gameScreen" class="card" hidden>
+        <div class="status-row">
+            <span id="playerLabel" class="pill"></span>
+            <span id="streakLabel" class="pill">Streak: 0</span>
+            <span id="livesLabel" class="pill">Lives: 6</span>
+        </div>
+
+        <div class="gallows">
+            <svg viewBox="0 0 120 140" id="gallowsSvg" aria-hidden="true">
+                <line class="frame" x1="10" y1="135" x2="90" y2="135"/>
+                <line class="frame" x1="30" y1="135" x2="30" y2="10"/>
+                <line class="frame" x1="30" y1="10" x2="80" y2="10"/>
+                <line class="frame" x1="80" y1="10" x2="80" y2="25"/>
+                <circle class="part" data-part="0" cx="80" cy="35" r="10"/>
+                <line class="part" data-part="1" x1="80" y1="45" x2="80" y2="80"/>
+                <line class="part" data-part="2" x1="80" y1="55" x2="65" y2="70"/>
+                <line class="part" data-part="3" x1="80" y1="55" x2="95" y2="70"/>
+                <line class="part" data-part="4" x1="80" y1="80" x2="65" y2="100"/>
+                <line class="part" data-part="5" x1="80" y1="80" x2="95" y2="100"/>
+            </svg>
+        </div>
+
+        <p id="wordDisplay" class="word"></p>
+        <p id="wrongLetters" class="wrong"></p>
+
+        <div id="keyboard" class="keyboard"></div>
+    </section>
+</main>
+
+<div id="roundModal" class="modal" hidden>
+    <div class="modal-card">
+        <h2 id="modalTitle"></h2>
+        <p id="modalWord" class="modal-word"></p>
+        <p id="modalDefinition" class="modal-definition"></p>
+        <div class="modal-actions">
+            <button id="continueButton" class="primary-button" type="button">Next word</button>
+            <button id="quitButton" class="ghost-button" type="button">Quit</button>
+        </div>
+    </div>
+</div>
+
+<div id="leaderboardPanel" class="modal" hidden>
+    <div class="modal-card">
+        <h2>Leaderboard</h2>
+        <label class="field">
+            <span>Difficulty</span>
+            <select id="leaderboardDifficulty">
+                <option value="">All</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </label>
+        <ol id="leaderboardList" class="leaderboard"></ol>
+        <button id="closeLeaderboard" class="ghost-button" type="button">Close</button>
+    </div>
+</div>
+
+<script src="game.js"></script>
+</body>
+</html>

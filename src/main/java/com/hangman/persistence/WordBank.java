@@ -6,6 +6,8 @@ import com.hangman.model.Word;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.UncheckedIOException;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +29,20 @@ public class WordBank {
     public WordBank(Path jsonPath) {
         Objects.requireNonNull(jsonPath);
         words = Collections.unmodifiableList(loadWords(jsonPath));
+    }
+
+    /**
+     * Loads the word list from an arbitrary reader, letting the web backend
+     * supply a bundled classpath resource instead of a filesystem path. The
+     * reader is consumed and closed by this constructor.
+     */
+    public WordBank(Reader reader) {
+        Objects.requireNonNull(reader);
+        try (reader) {
+            words = Collections.unmodifiableList(new Gson().fromJson(reader, WORD_LIST_TYPE));
+        } catch (IOException ex) {
+            throw new UncheckedIOException("Failed to load word list from reader", ex);
+        }
     }
 
     public Word pickRandomWord(String difficulty, List<String> exclusions) {
