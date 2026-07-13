@@ -30,30 +30,33 @@ class GamePlayService {
         String name = sanitiseName(playerName);
         String level = validateDifficulty(difficulty);
         GameSession session = sessions.create(name, level);
-        return startRound(session);
+        return session.runExclusive(() -> startRound(session));
     }
 
     GameState nextRound(String gameId) {
-        return startRound(sessions.get(gameId));
+        GameSession session = sessions.get(gameId);
+        return session.runExclusive(() -> startRound(session));
     }
 
     GameState guess(String gameId, String rawLetter) {
         GameSession session = sessions.get(gameId);
         char letter = validateLetter(rawLetter);
-        GameLogic round = session.round();
-        GameLogic.GuessResult result = round.submitGuess(letter);
+        return session.runExclusive(() -> {
+            GameLogic round = session.round();
+            GameLogic.GuessResult result = round.submitGuess(letter);
 
-        if (!round.isGameOver()) {
-            return GameState.of(session, result, null, null);
-        }
+            if (!round.isGameOver()) {
+                return GameState.of(session, result, null, null);
+            }
 
-        boolean won = round.hasWon();
-        session.recordOutcome(won);
-        if (won) {
-            leaderboard.recordStreak(session.playerName(), session.difficulty(), session.streak());
-        }
-        String word = round.getTargetWord().getValue();
-        return GameState.of(session, result, word, dictionary.define(word));
+            boolean won = round.hasWon();
+            session.recordOutcome(won);
+            if (won) {
+                leaderboard.recordStreak(session.playerName(), session.difficulty(), session.streak());
+            }
+            String word = round.getTargetWord().getValue();
+            return GameState.of(session, result, word, dictionary.define(word));
+        });
     }
 
     private GameState startRound(GameSession session) {
