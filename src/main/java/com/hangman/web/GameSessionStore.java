@@ -1,5 +1,6 @@
 package com.hangman.web;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -9,18 +10,19 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * In-memory registry of active game sessions. Idle sessions are evicted lazily
- * so abandoned games do not accumulate; a pod restart simply drops in-flight
- * games, which is acceptable for a casual leaderboard.
+ * In-memory registry of active game sessions. Idle sessions are evicted by a
+ * scheduled sweep so abandoned games do not accumulate even on a quiet server;
+ * a pod restart simply drops in-flight games, which is acceptable for a casual
+ * leaderboard.
  */
 @Component
 class GameSessionStore {
     private static final Duration MAX_IDLE = Duration.ofHours(2);
+    private static final long EVICTION_INTERVAL_MS = 10 * 60 * 1000L;
 
     private final Map<String, GameSession> sessions = new ConcurrentHashMap<>();
 
     GameSession create(String playerName, String difficulty) {
-        evictIdle();
         String id = UUID.randomUUID().toString();
         GameSession session = new GameSession(id, playerName, difficulty);
         sessions.put(id, session);
@@ -36,7 +38,8 @@ class GameSessionStore {
         return session;
     }
 
-    private void evictIdle() {
+    @Scheduled(fixedDelay = EVICTION_INTERVAL_MS)
+    void evictIdle() {
         Instant cutoff = Instant.now().minus(MAX_IDLE);
         sessions.values().removeIf(session -> session.lastActive().isBefore(cutoff));
     }
