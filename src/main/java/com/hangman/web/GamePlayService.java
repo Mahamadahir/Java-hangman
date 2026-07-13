@@ -41,10 +41,10 @@ class GamePlayService {
         GameSession session = sessions.get(gameId);
         char letter = validateLetter(rawLetter);
         GameLogic round = session.round();
-        round.submitGuess(letter);
+        GameLogic.GuessResult result = round.submitGuess(letter);
 
         if (!round.isGameOver()) {
-            return GameState.of(session, null, null);
+            return GameState.of(session, result, null, null);
         }
 
         boolean won = round.hasWon();
@@ -53,7 +53,7 @@ class GamePlayService {
             leaderboard.recordStreak(session.playerName(), session.difficulty(), session.streak());
         }
         String word = round.getTargetWord().getValue();
-        return GameState.of(session, word, dictionary.define(word));
+        return GameState.of(session, result, word, dictionary.define(word));
     }
 
     private GameState startRound(GameSession session) {

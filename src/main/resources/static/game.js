@@ -119,11 +119,30 @@ async function guess(letter) {
   try {
     state = await api("POST", `/api/game/${state.gameId}/guess`, { letter });
     render();
+    flagGuess(letter, state.lastGuess);
     if (state.status !== "IN_PROGRESS") {
       showRoundEnd();
     }
   } catch (err) {
     console.error(err);
+  }
+}
+
+function flagGuess(letter, result) {
+  const button = els.keyboard.querySelector(`button[data-letter="${letter}"]`);
+  if (!button) {
+    return;
+  }
+  if (result === "CORRECT") {
+    button.disabled = true;
+    button.classList.add("correct");
+  } else if (result === "INCORRECT") {
+    button.disabled = true;
+    button.classList.add("incorrect");
+  } else if (result === "ALREADY_GUESSED" || result === "INVALID") {
+    button.classList.remove("shake");
+    void button.offsetWidth;
+    button.classList.add("shake");
   }
 }
 

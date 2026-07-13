@@ -1,6 +1,7 @@
 package com.hangman.web;
 
 import com.hangman.logic.GameLogic;
+import com.hangman.logic.GameLogic.GuessResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,15 @@ record GameState(
         List<Character> wrongLetters,
         int streak,
         String status,
+        String lastGuess,
         String word,
         String definition) {
 
     static GameState of(GameSession session, String word, String definition) {
+        return of(session, null, word, definition);
+    }
+
+    static GameState of(GameSession session, GuessResult lastGuess, String word, String definition) {
         GameLogic round = session.round();
         return new GameState(
                 session.id(),
@@ -34,6 +40,7 @@ record GameState(
                 wrongLetters(round),
                 session.streak(),
                 status(round),
+                lastGuess == null ? null : lastGuess.name(),
                 word,
                 definition);
     }
