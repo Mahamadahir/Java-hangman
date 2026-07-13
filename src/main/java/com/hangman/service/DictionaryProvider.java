@@ -27,9 +27,40 @@ public class DictionaryProvider {
     private static final Duration TIMEOUT = Duration.ofSeconds(5);
 
     private final Map<String, String> cache = new ConcurrentHashMap<>();
-    private final HttpClient client = HttpClient.newBuilder()
-            .connectTimeout(TIMEOUT)
-            .build();
+    private final HttpExchange exchange;
+
+    public DictionaryProvider() {
+        this(defaultExchange());
+    }
+
+    DictionaryProvider(HttpExchange exchange) {
+        this.exchange = exchange;
+    }
+
+    private static HttpExchange defaultExchange() {
+        HttpClient client = HttpClient.newBuilder().connectTimeout(TIMEOUT).build();
+        return word -> {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(API_BASE + URLEncoder.encode(word, StandardCharsets.UTF_8)))
+                    .timeout(TIMEOUT)
+                    .GET()
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            return new HttpReply(response.statusCode(), response.body());
+        };
+    }
+
+    /**
+     * Seam over the outbound dictionary call so tests can supply a fake reply
+     * without a live HTTP request. Production wires the real {@link HttpClient}.
+     */
+    @FunctionalInterface
+    interface HttpExchange {
+        HttpReply fetch(String word) throws IOException, InterruptedException;
+    }
+
+    record HttpReply(int statusCode, String body) {
+    }
 
     /**
      * Returns a human-readable definition for the word. Successful and
@@ -60,15 +91,10 @@ public class DictionaryProvider {
 
     private String lookup(String word) {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(API_BASE + URLEncoder.encode(word, StandardCharsets.UTF_8)))
-                    .timeout(TIMEOUT)
-                    .GET()
-                    .build();
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            int status = response.statusCode();
+            HttpReply reply = exchange.fetch(word);
+            int status = reply.statusCode();
             if (status == 200) {
-                String parsed = parseDefinition(response.body());
+                String parsed = parseDefinition(reply.body());
                 return parsed != null ? parsed : NOT_FOUND;
             }
             if (status == 404) {
