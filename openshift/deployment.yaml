@@ -14,9 +14,11 @@ spec:
       labels:
         app: hangman
     spec:
+      imagePullSecrets:
+        - name: ghcr
       containers:
         - name: hangman
-          image: image-registry.openshift-image-registry.svc:5000/hangman/hangman:latest
+          image: ghcr.io/mahamadahir/hangman:latest
           ports:
             - containerPort: 8080
           env:
